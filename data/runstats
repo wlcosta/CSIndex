@@ -8,6 +8,9 @@
 # How to use:
 # from "data" folder: ./runstats
 
+set -e
+PYTHON=${PYTHON:-python3}
+
 rm ../statistics.html
 cat ../html/statistics1.html > ../statistics.html
 ../stats >> ../statistics.html
@@ -15,5 +18,5 @@ cat ../html/statistics2.html >> ../statistics.html
 
 rm ../profs.html
 cat ../html/profs1.html > ../profs.html
-python3 ../runprofs.py
+"$PYTHON" ../runprofs.py
 cat ../html/profs2.html >> ../profs.html

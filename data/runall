@@ -1,3 +1,6 @@
+set -e
+PYTHON=${PYTHON:-python3}
+
 ./run2 cs se pl chi net ds arch hardware dbis ir data ai theory formal or security vision robotics cse bio graphics
 ./runstats
-python3 ../csdepts.py
+"$PYTHON" ../csdepts.py

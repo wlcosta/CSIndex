@@ -3,7 +3,7 @@
 
 mailto = "&mailto=mtvalente@gmail.com"
 headers = {
-    'User-Agent': 'csindexbr.org; mtvalente@gmail.com',
+    'User-Agent': 'wlcosta.github.io/CSIndex; local CSIndex fork maintenance',
 }
 
 def open_citations_cache(area):

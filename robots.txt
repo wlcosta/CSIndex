@@ -4,4 +4,4 @@ Allow: /authors.html?p=*
 
 Disallow: /docs/bibtex.txt
 
-Sitemap: https://csindexbr.org/sitemap.txt
+Sitemap: https://wlcosta.github.io/CSIndex/sitemap.txt

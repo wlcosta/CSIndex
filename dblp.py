@@ -8,6 +8,26 @@ import time
 import csv
 import requests
 import xmltodict
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+DBLP_USER_AGENT = "CSIndex-local-update/1.0 (https://wlcosta.github.io/CSIndex/)"
+
+def _session():
+    session = requests.Session()
+    retries = Retry(
+        total=3,
+        connect=3,
+        read=3,
+        backoff_factor=2,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=("GET",),
+    )
+    session.mount("https://", HTTPAdapter(max_retries=retries))
+    session.headers.update({"User-Agent": DBLP_USER_AGENT})
+    return session
+
+REQUESTS_SESSION = _session()
 
 def is_in_cache(prof):
     file = '../cache/dblp/' + prof + '.xml'
@@ -15,6 +35,7 @@ def is_in_cache(prof):
    
 def save_cache(prof, bibfile):
     file = '../cache/dblp/' + prof + '.xml'  
+    os.makedirs(os.path.dirname(file), exist_ok=True)
     with open(file, 'w') as f:
       f.write(str(bibfile))
       
@@ -25,12 +46,22 @@ def read_cache(prof):
 
 def crawl_dblp(pid):
     try:
-      url = "http://dblp.org/pid/" + pid + ".xml"
-      return requests.get(url, timeout=180).text
+      url = "https://dblp.org/pid/" + pid + ".xml"
+      response = REQUESTS_SESSION.get(url, timeout=180)
+      response.raise_for_status()
+      content_type = response.headers.get("Content-Type", "")
+      text = response.text
+      if "html" in content_type.lower() or text.lstrip().lower().startswith("<!doctype html") or text.lstrip().lower().startswith("<html"):
+         raise ValueError(f"DBLP returned HTML instead of XML for PID {pid}")
+      xmltodict.parse(text)
+      return text
     except requests.Timeout:
       print("Request timed out after 180 seconds")     
     except requests.exceptions.RequestException as e:
       print (e)
+      sys.exit(1)
+    except (ValueError, xmltodict.expat.ExpatError) as e:
+      print(e)
       sys.exit(1)
    
 def get_dblp_file(pid, prof):
@@ -80,4 +111,3 @@ if __name__ == "__main__":
     if download:
        download_all_prof_data()
     test_all_prof_data()
-    

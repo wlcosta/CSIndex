@@ -1,23 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-8249107-7', 'auto');
-        ga('send', 'pageview');
-    </script>
-
-    <script>
+<script>
         var trackOutboundLink = function(url) {
-            ga('send', 'event', 'outbound', 'click', url, {
-               'transport': 'beacon',
-               'hitCallback': function(){window.open(url);}
-            });
+            window.open(url);
         }
     </script>
 
@@ -176,7 +162,7 @@
                if (dept_full === dept_search) {
                   prof = arrayData[i][0];
                   prof2 = prof.split(" ").join("-");
-                  url = '<a href="https://csindexbr.org/authors.html?p=';
+                  url = '<a href="authors.html?p=';
                   url = url + prof2 + '" target="_blank">' +  prof + '</a>';
                   area = getFullArea(arrayData[i][2]);
                   url_array = [];
@@ -331,7 +317,6 @@
   document.getElementById("dept_name").innerHTML = dept_msg;
   txt1 = 'Papers and faculty by research area of ' + dept_msg;
   document.getElementsByTagName('meta')["description"].content = txt1;
-  ga('send', 'event', 'Dept Page', dept);
 </script>
 
 <script src="libs/popper.min.js"> </script>

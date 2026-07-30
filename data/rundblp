@@ -6,22 +6,38 @@
 # How to use:
 # From data folder: ./rundblp
 
+set -e
+PYTHON=${PYTHON:-python3}
+
+runtime_min() {
+  if command -v bc >/dev/null 2>&1; then
+    echo "scale=2; $1 / 60.0" | bc -l
+  else
+    awk "BEGIN { printf \"%.2f\", $1 / 60.0 }"
+  fi
+}
+
 start=`date +%s`
 
 date=`date +%Y-%m-%d`
 name="dblp-$date.zip"
 
+mkdir -p ../cache/dblp
 cd ../cache
-zip -qr "$name" dblp
+if command -v zip >/dev/null 2>&1; then
+  zip -qr "$name" dblp
+else
+  echo "zip not found; skipping pre-update cache archive"
+fi
 
-rm ./dblp/*
+rm -f ./dblp/*
 
 cd ../data
 
-python3 ../dblp.py
+"$PYTHON" ../dblp.py
 
 end=`date +%s`
 echo '############# dblp update finished #############'
 runtime1=$(($end-$start))
-runtime1=$(echo "scale=2; " $runtime1 "/ 60.0" | bc -l)
+runtime1=$(runtime_min "$runtime1")
 echo 'Runtime: ' $runtime1 'min'

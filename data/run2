@@ -1,17 +1,28 @@
+set -e
+PYTHON=${PYTHON:-python3}
+
+runtime_min() {
+  if command -v bc >/dev/null 2>&1; then
+    echo "scale=2; $1 / 60.0" | bc -l
+  else
+    awk "BEGIN { printf \"%.2f\", $1 / 60.0 }"
+  fi
+}
+
 start0=`date +%s`
 for area in "$@"
 do
   echo '##################' $area '##################'
   start=`date +%s`
-  python3 ../csindexbr.py $area
+  "$PYTHON" ../csindexbr.py $area
   end=`date +%s`
   echo '##################' $area "finished" '##################'
   runtime1=$(($end-$start))
-  runtime1=$(echo "scale=2; " $runtime1 "/ 60.0" | bc -l)
+  runtime1=$(runtime_min "$runtime1")
   echo 'Runtime: ' $runtime1 'min'
 done
 echo '####################################'
 end0=`date +%s`
 runtime0=$(($end0-$start0))
-runtime0=$(echo "scale=2; " $runtime0 "/ 60.0" | bc -l)
+runtime0=$(runtime_min "$runtime0")
 echo 'Overall runtime: ' $runtime0 'min'

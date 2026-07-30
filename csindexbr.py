@@ -8,6 +8,7 @@ import os
 from difflib import SequenceMatcher
 import requests
 import xmltodict
+from dblp import crawl_dblp
 
 FIRST_YEAR = 2021
 LAST_YEAR = 2026
@@ -266,10 +267,14 @@ def merge_output_prof_papers(prof):
     for file in glob.glob("*" + prof + "-papers.csv"):
         filenames.append(file)
     filenames.sort()
-    outfile = open("../../data/profs/search/" + prof + ".csv", 'w')
+    outfile = open("../../data/profs/search/" + prof + ".csv", 'w', encoding='utf-8')
     for fname in filenames:
-        with open(fname) as infile:
-             outfile.write(infile.read())
+        try:
+            with open(fname, encoding='utf-8') as infile:
+                 outfile.write(infile.read())
+        except UnicodeDecodeError:
+            with open(fname, encoding='cp1252') as infile:
+                 outfile.write(infile.read())
     os.chdir("../../data")
 
 def output_search_box_list():
@@ -537,17 +542,13 @@ def read_dblp_file(pid, prof):
     prof = prof.replace(" ", "-")
     file = '../cache/dblp/' + prof + '.xml'
     if os.path.exists(file):
-       with open(file) as f:
+       with open(file, encoding='utf-8') as f:
           dblp_xml = f.read()
     else:
-       try:
-          url = "http://dblp.org/pid/" + pid + ".xml"
-          dblp_xml = requests.get(url).text
-          with open(file, 'w') as f:
-             f.write(str(dblp_xml))
-       except requests.exceptions.RequestException as e:
-          print(e)
-          sys.exit(1)
+       dblp_xml = crawl_dblp(pid)
+       os.makedirs(os.path.dirname(file), exist_ok=True)
+       with open(file, 'w', encoding='utf-8') as f:
+          f.write(str(dblp_xml))
     return dblp_xml
 
 def process_prof_with_paper(prof, dept):

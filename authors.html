@@ -1,23 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-8249107-7', 'auto');
-        ga('send', 'pageview');
-    </script>
-
-    <script>
+<script>
         var trackOutboundLink = function(url) {
-            ga('send', 'event', 'outbound', 'click', url, {
-               'transport': 'beacon',
-               'hitCallback': function(){window.open(url);}
-            });
+            window.open(url);
         }
     </script>
 
@@ -199,85 +185,85 @@
 
   function instToLink(inst) {
      if (inst === 'COPPE/UFRJ') {
-        return '<a href="https://csindexbr.org/depts.html?d=coppeufrj">COPPE/UFRJ';
+        return '<a href="depts.html?d=coppeufrj">COPPE/UFRJ';
      }
      else if (inst === 'DCC/UFRJ') {
-        return '<a href="https://csindexbr.org/depts.html?d=dccufrj">DCC/UFRJ';
+        return '<a href="depts.html?d=dccufrj">DCC/UFRJ';
      }
      else if (inst === 'ICMC/USP') {
-        return '<a href="https://csindexbr.org/depts.html?d=icmcusp">ICMC/USP';
+        return '<a href="depts.html?d=icmcusp">ICMC/USP';
      }
      else if (inst === 'IME/USP') {
-        return '<a href="https://csindexbr.org/depts.html?d=imeusp">IME/USP';
+        return '<a href="depts.html?d=imeusp">IME/USP';
      }
      else if (inst === 'PUC-RS') {
-        return '<a href="https://csindexbr.org/depts.html?d=puc-rs">PUC-RS';
+        return '<a href="depts.html?d=puc-rs">PUC-RS';
      }
      else if (inst === 'PUC-Rio') {
-        return '<a href="https://csindexbr.org/depts.html?d=puc-rio">PUC-Rio';
+        return '<a href="depts.html?d=puc-rio">PUC-Rio';
      }
      else if (inst === 'UERJ') {
-        return '<a href="https://csindexbr.org/depts.html?d=uerj">UERJ';
+        return '<a href="depts.html?d=uerj">UERJ';
      }
      else if (inst === 'UFABC') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufabc">UFABC';
+        return '<a href="depts.html?d=ufabc">UFABC';
      }
      else if (inst === 'UFAM') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufam">UFAM';
+        return '<a href="depts.html?d=ufam">UFAM';
      }
      else if (inst === 'UFBA') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufba">UFBA';
+        return '<a href="depts.html?d=ufba">UFBA';
      }
      else if (inst === 'UFC') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufc">UFC';
+        return '<a href="depts.html?d=ufc">UFC';
      }
      else if (inst === 'UFCG') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufcg">UFCG';
+        return '<a href="depts.html?d=ufcg">UFCG';
      }
      else if (inst === 'UFES') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufes">UFES';
+        return '<a href="depts.html?d=ufes">UFES';
      }
      else if (inst === 'UFF') {
-        return '<a href="https://csindexbr.org/depts.html?d=uff">UFF';
+        return '<a href="depts.html?d=uff">UFF';
      }
      else if (inst === 'UFMG') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufmg">UFMG';
+        return '<a href="depts.html?d=ufmg">UFMG';
      }
      else if (inst === 'UFPE') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufpe">UFPE';
+        return '<a href="depts.html?d=ufpe">UFPE';
      }
      else if (inst === 'UFPR') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufpr">UFPR';
+        return '<a href="depts.html?d=ufpr">UFPR';
      }
      else if (inst === 'UFRGS') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufrgs">UFRGS';
+        return '<a href="depts.html?d=ufrgs">UFRGS';
      }
      else if (inst === 'UFRN') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufrn">UFRN';
+        return '<a href="depts.html?d=ufrn">UFRN';
      }
      else if (inst === 'UFSC') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufsc">UFSC';
+        return '<a href="depts.html?d=ufsc">UFSC';
      }
      else if (inst === 'UFSCar') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufscar">UFSCar';
+        return '<a href="depts.html?d=ufscar">UFSCar';
      }
      else if (inst === 'UFU') {
-        return '<a href="https://csindexbr.org/depts.html?d=ufu">UFU';
+        return '<a href="depts.html?d=ufu">UFU';
      }
      else if (inst === 'UNICAMP') {
-        return '<a href="https://csindexbr.org/depts.html?d=unicamp">UNICAMP';
+        return '<a href="depts.html?d=unicamp">UNICAMP';
      }
      else if (inst === 'UNIFESP') {
-        return '<a href="https://csindexbr.org/depts.html?d=unifesp">UNIFESP';
+        return '<a href="depts.html?d=unifesp">UNIFESP';
      }
      else if (inst === 'UTFPR') {
-        return '<a href="https://csindexbr.org/depts.html?d=utfpr">UTFPR';
+        return '<a href="depts.html?d=utfpr">UTFPR';
      }
      else if (inst === 'UnB') {
-       return '<a href="https://csindexbr.org/depts.html?d=unb">UnB';
+       return '<a href="depts.html?d=unb">UnB';
      }
      else if (inst === 'UFPA') {
-       return '<a href="https://csindexbr.org/depts.html?d=ufpa">UFPA';
+       return '<a href="depts.html?d=ufpa">UFPA';
      }
      return inst;
   }
@@ -304,7 +290,6 @@
           }
       }
   });
-  ga('send', 'event', 'Author Search', author);
 </script>
 
 <script src="libs/popper.min.js"> </script>

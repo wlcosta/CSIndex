@@ -45,7 +45,7 @@ for p in reader2:
     p2 = prof.replace(" ", "-")
     dept = inst[prof]
     area = get_area(p2)
-    out.write('<li>  <a href="https://csindexbr.org/authors.html?p=' + p2 + '">')
+    out.write('<li>  <a href="authors.html?p=' + p2 + '">')
     out.write(' ' + prof + '</a>')
     out.write(' <small> (' + dept + ', ' + area + ') </small>')
     out.write('\n')
@@ -57,7 +57,7 @@ for p in reader2:
     out2.write(area)
     out2.write('\n')
     #create_p_file(p2)
-#    out3.write('https://csindexbr.org/authors.html?p=' + p2 + '\n')
+#    out3.write('authors.html?p=' + p2 + '\n')
 out.close
 out2.close
 #out3.close

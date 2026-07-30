@@ -1,6 +1,8 @@
 # CSIndexbr
 
-CSIndexbr (https://csindexbr.org) provides transparent data about Brazilian scientific production in Computer Science. We index full research papers published in selected conferences and journals. The papers are retrieved from <a href="https://dblp.org/">DBLP</a>.
+This repository is an independently maintained static snapshot/fork of the original CSIndexbr project for publication at https://wlcosta.github.io/CSIndex/.
+
+CSIndexbr provides transparent data about Brazilian scientific production in Computer Science. We index full research papers published in selected conferences and journals. The papers are retrieved from <a href="https://dblp.org/">DBLP</a>.
 
 # Dependencies
 
@@ -55,7 +57,7 @@ The following files are specific of a given research area (i.e., each area has a
     * 4: top-journal 
     * 5: "regular" journal (i.e., non-top)
     * 6: magazine or journal that accept short papers (>= 6 pages)
-    * 7: journals with low normalized-h5-index (see [FAQ](https://csindexbr.org/faq.html), for details) 
+    * 7: journals with low normalized-h5-index (see [FAQ](faq.html), for details)
 
 * [se-black-list.txt](https://github.com/aserg-ufmg/CSIndex/blob/master/data/se-black-list.txt): list of papers that **must not** be indexed, although they attend the basic indexing criteria. For example, they are papers published in other tracks, that is not the main research track of a conference. Each line contains the "url" XML field of the paper (see [example](https://dblp.uni-trier.de/rec/xml/conf/icse/NetoCLGM13.xml))
 
@@ -71,7 +73,7 @@ Examples assuming "se" research area:
 * [se-out-journals.csv](https://github.com/aserg-ufmg/CSIndex/blob/master/data/se-out-journals.csv): number of papers in indexed journals
 * [se-out-profs-list.csv](https://github.com/aserg-ufmg/CSIndex/blob/master/data/se-out-profs-list.csv): professores with indexed papers in the area (and their departments)
 * [se-out-profs.csv](https://github.com/aserg-ufmg/CSIndex/blob/master/data/se-out-profs.csv): number of professores with indexeded papers (in the area) per department
-* [se-out-scores.csv](https://github.com/aserg-ufmg/CSIndex/blob/master/data/se-out-scores.csv): department scores (see formula in the [FAQ](https://csindexbr.org/faq.html))
+* [se-out-scores.csv](https://github.com/aserg-ufmg/CSIndex/blob/master/data/se-out-scores.csv): department scores (see formula in the [FAQ](faq.html))
 * [se-out-papers.csv](https://github.com/aserg-ufmg/CSIndex/blob/master/data/se-out-papers.csv): metadata about indexed papers: year, venue, title, deparments, authors, doi, top or null (otherwise), journal (J) or conference (C), arxiv url or no_arxiv (otherwise), and number of citations
 
 # License:

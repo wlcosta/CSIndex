@@ -43,7 +43,7 @@ for dept in dept_list:
     if num_prof < 10:
        continue
     dept2 = dept.replace("/", "").replace(" ","").lower()
-    f2.write('<li>  <a href="https://csindexbr.org/depts.html?d=' + dept2 + '">' + dept + '</a>\n')
+    f2.write('<li>  <a href="depts.html?d=' + dept2 + '">' + dept + '</a>\n')
     f = open('depts/scores-' + dept2 + '.csv','w')
     for area in area_list:
         f.write(area.upper())

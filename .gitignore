@@ -4,7 +4,13 @@ utils/*.txt
 utils/*.gz
 utils/data/*.*
 data/log.txt
+data/*.log
 data/manual-classification-failed.csv
 data/allpapers.csv
 csindex-env
+.venv/
+local-backups/
+update-logs/
+*.zip
+__pycache__/
 
