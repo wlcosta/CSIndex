@@ -21,18 +21,41 @@
 
 		google.charts.setOnLoadCallback(drawChartConfs);
 		google.charts.setOnLoadCallback(drawChartDepts);
-//	google.charts.setOnLoadCallback(drawChartProfs);
     google.charts.setOnLoadCallback(drawTableProfsList);
     google.charts.setOnLoadCallback(drawTablePapers);
     google.charts.setOnLoadCallback(drawTableStats);
 
+		var corebrChartsReady = false;
+		google.charts.setOnLoadCallback(function() { corebrChartsReady = true; });
+
 		corebr_area_prefix= sessionStorage.getItem('corebr_area_prefix');
 		var corebr_confs_file  = "data/" + corebr_area_prefix + "-out-confs.csv";
 		var corebr_depts_file  = "data/" + corebr_area_prefix + "-out-scores.csv";
-//	var corebr_profs_file  = "data/" + corebr_area_prefix + "-out-profs.csv";
     var corebr_profs_list_file  = "data/" + corebr_area_prefix + "-out-profs-list.csv";
 	  var corebr_papers_file = "data/" + corebr_area_prefix + "-out-papers.csv";
 	  var corebr_stats_file  = "data/" + corebr_area_prefix + "-out-stats.csv";
+
+		function corebrChartWidth() {
+		  return Math.max(document.body.clientWidth - 20, 280);
+		}
+
+		function corebrChartFontSize() {
+		  return document.body.clientWidth < 500 ? 10 : 12;
+		}
+
+		function corebrMaxCategories() {
+		  return document.body.clientWidth < 500 ? 8 : 16;
+		}
+
+		var corebrResizeTimer;
+		window.addEventListener('resize', function() {
+		  if (!corebrChartsReady) { return; }
+		  clearTimeout(corebrResizeTimer);
+		  corebrResizeTimer = setTimeout(function() {
+		    drawChartConfs();
+		    drawChartDepts();
+		  }, 250);
+		});
 
 		function drawChartConfs() {
 		  $.get(corebr_confs_file, function(csvString) {
@@ -48,9 +71,9 @@
 							 type: "string",
 							 role: "annotation" },
 						  ]);
-		       var options = { 'width': 800,
+		       var options = { 'width': corebrChartWidth(),
 						  'height': 500,
-						  'fontSize': 12,
+						  'fontSize': corebrChartFontSize(),
 						  'legend': { position: "none" },
 						  'chartArea': {left:40, top:40, right:30,  width:'80%',height:'65%'},
 						  'hAxis': { slantedText:true, slantedTextAngle:45 },
@@ -67,8 +90,9 @@
 		function drawChartDepts() {
 		  $.get(corebr_depts_file, function(csvString) {
 		       var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
-           if (arrayData.length > 16) {
-              arrayData = arrayData.slice(0,16);
+           var maxDepts = corebrMaxCategories();
+           if (arrayData.length > maxDepts) {
+              arrayData = arrayData.slice(0,maxDepts);
            }
 		       var data= new google.visualization.DataTable();
 		       data.addColumn('string', 'Departments');
@@ -81,9 +105,9 @@
 							 type: "string",
 							 role: "annotation" },
 						  ]);
-		       var options = { 'width': 800,
+		       var options = { 'width': corebrChartWidth(),
 						  'height': 500,
-						  'fontSize': 12,
+						  'fontSize': corebrChartFontSize(),
 						  'legend': { position: "none" },
 						  'chartArea': {left:40, top:40, right:30,  width:'80%',height:'65%'},
 						  'hAxis': { slantedText:true, slantedTextAngle:45 },
@@ -93,35 +117,6 @@
 					 };
 		       var chart = new google.visualization.ColumnChart(document.getElementById('chart_depts'));
 		       chart.draw(view, options);
-		  });
-		}
-
-		function drawChartProfs() {
-		  $.get(corebr_profs_file, function(csvString) {
-		       var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
-		       var data= new google.visualization.DataTable();
-		       data.addColumn('string', 'Departments');
-		       data.addColumn('number', 'Profs');
-		       data.addRows(arrayData);
-		       var view = new google.visualization.DataView(data);
-		       view.setColumns([0, 1,
-						   { calc: "stringify",
-							 sourceColumn: 1,
-							 type: "string",
-							 role: "annotation" },
-						  ]);
-		       var options = { 'width': 800,
-						  'height': 500,
-						  'fontSize': 12,
-						  'legend': { position: "none" },
-						  'chartArea': {left:40, top:30, right:30,  width:'80%',height:'65%'},
-						  'hAxis': { slantedText:true, slantedTextAngle:45 },
-						  'annotations': { alwaysOutside:true },
-						  'titleTextStyle': { bold: false },
-						  'title': 'Number of faculty members co-authoring papers in tracked conferences'
-						};
-		        var chart = new google.visualization.ColumnChart(document.getElementById('chart_profs'));
-		        chart.draw(view, options);
 		  });
 		}
 
