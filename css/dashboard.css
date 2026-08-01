@@ -62,3 +62,17 @@ h1 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+
+/*
+ * Responsive iframe
+ */
+
+.charts-iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 575.98px) {
+  .charts-iframe {
+    width: 100%;
+  }
+}
