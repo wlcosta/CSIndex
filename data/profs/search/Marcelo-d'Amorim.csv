@@ -3,6 +3,8 @@
 2026,IEEE Software,"Agentic LMs: Hunting Down Test Smells.",Rian Melo; Pedro Simões; Rohit Gheyi; Marcelo d'Amorim; Márcio Ribeiro 0001; Gustavo Soares; Eduardo Santana de Almeida; Elvys Soares,https://doi.org/10.1109/MS.2025.3621356,null,J,no_arxiv,0
 2026,TSE,"Configuration Defects in Kubernetes.",Yue Zhang 0051; Uchswas Paul; Marcelo d'Amorim; Akond Rahman,https://doi.org/10.1109/TSE.2026.3659785,top,J,no_arxiv,0
 2026,ICST,"How Effective Is Coverage-Guided Fuzzing to Test Deep Learning Library APIs?",Feiran Alex Qin; M. M. Abid Naziri; Hengyu Ai; Saikat Dutta 0001; Marcelo d'Amorim,https://doi.org/10.1109/ICST69053.2026.00023,null,C,no_arxiv,0
+2026,MSR,"An Empirical Analysis of Cross-OS Portability Issues in Python Projects.",Denini Gabriel Silva; MohamadAli Farahat; Marcelo d'Amorim,https://doi.org/10.1145/3793302.3793373,null,C,no_arxiv,0
+2026,MSR,"Learning Compiler Fuzzing Mutators from Historical Bugs.",Lingjun Liu; Feiran (Alex) Qin; Owolabi Legunsen; Marcelo d'Amorim,https://doi.org/10.1145/3793302.3793374,null,C,no_arxiv,0
 2025,TOSEM,"Test Oracle Automation in the Era of LLMs.",Facundo Molina; Alessandra Gorla; Marcelo d'Amorim,https://doi.org/10.1145/3715107,top,J,no_arxiv,0
 2025,TSE,"ChatAssert: LLM-Based Test Oracle Generation With External Tools Assistance.",Ishrak Hayet; Adam Scott; Marcelo d'Amorim,https://doi.org/10.1109/TSE.2024.3519159,top,J,no_arxiv,0
 2024,TSE,"The Effects of Computational Resources on Flaky Tests.",Denini Silva; Martin Gruber; Satyajit Gokhale; Ellen Arteca; Alexi Turcotte; Marcelo d'Amorim; Wing Lam; Stefan Winter 0001; Jonathan Bell 0001,https://doi.org/10.1109/TSE.2024.3462251,top,J,no_arxiv,0

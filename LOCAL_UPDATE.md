@@ -48,6 +48,27 @@ PYTHON="$PWD/../.venv/Scripts/python.exe" ../dblp.py -test
 
 The DBLP downloader sleeps about five seconds for each uncached researcher. With 1,300 researchers, a fully uncached update takes at least about 108 minutes, plus network and generation time.
 
+## Official Monthly Dump Fallback
+
+When DBLP's live per-PID API is protected by an anti-bot challenge, use the official
+monthly snapshot from Dagstuhl DROPS instead of retrying thousands of live requests.
+The dump keeps the same DBLP PIDs and is only a source adapter; ranking and venue
+configuration remain unchanged.
+
+```bash
+cd data
+PYTHON="$PWD/../.venv/Scripts/python.exe" \
+  "$PYTHON" import_dblp_dump.py \
+  --dump ../cache/dblp-2026-09-01.xml.gz \
+  --fallback-cache-zip ../cache/dblp-2026-09-25.zip \
+  --output-dir ../cache/dblp
+PYTHON="$PWD/../.venv/Scripts/python.exe" ./runall
+PYTHON="$PWD/../.venv/Scripts/python.exe" ../dblp.py -test
+```
+
+The release file is ignored and should be retained locally with its checksum and
+release date recorded in `update-logs/`.
+
 ## Validation
 
 Review the log under `update-logs/`, then check:
